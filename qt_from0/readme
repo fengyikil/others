@@ -1,0 +1,15 @@
+2d-1 旋转的椭圆
+
+2d-2 scroll版实时曲线
+
+2d-3 QPixmap.scaled 方法演示，资源为绝对路径下的蝴蝶png图片
+
+softkeyboard 初级版的软键盘
+
+softkeyboard1 使用了inputcontex的全局软键盘
+
+mylistview 一个简单的数据库通过listview QStringListModel来呈现，拥有删除、插入功能。
+
+softkeyboard2 模态键盘，支持模态对话框输入。
+
+slqspin	数据库版的spin工程
