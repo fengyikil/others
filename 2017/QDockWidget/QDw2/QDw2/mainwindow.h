@@ -14,16 +14,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    void reset_layout();
+    void showEvent(QShowEvent *event);
 private slots:
-
-    void on_pushButton_p1_clicked();
-
-    void on_pushButton_p2_clicked();
-
-    void on_pushButton_p3_clicked();
-
-    void on_pushButton_p4_clicked();
+    void on_actionreset_triggered();
 
 private:
     Ui::MainWindow *ui;

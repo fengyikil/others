@@ -1,0 +1,5 @@
+QDw1:
+测试dockwidget隐藏自己的功能，分为隐藏自己和隐藏自己的dockWidgetContents。
+QDw2:
+演示了使用dockwidget，设定初始大小的方法，先设置固定大小，然后等MainWindows show出来后，再设置 min和max大小便可以改变大小。
+这个列子在showEvent中重新设定min和max大小。
