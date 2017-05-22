@@ -52,5 +52,5 @@ printf("UseTime is %d us\n",Useingtime);
 }
 #endif
 #define T_RUN_START {rtime_start();}
-#define T_RUN_END {rtime_end();rtime_print();}
+#define T_RUN_END(msg) {rtime_end();printf(msg);printf("---------------------\n");printf("\t\t");rtime_print();printf("\n\n");}
 #endif
