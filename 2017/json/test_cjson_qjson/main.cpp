@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+Ôªø#include <QCoreApplication>
 #include <QDebug>
 #include <QString>
 #include<QtCore>
@@ -20,16 +20,16 @@ void qjson_test1( int num)
     {
         json.insert(QString("arg%1").arg(QString::number(i)) ,QJsonValue(json1));
     }
-    T_RUN_END("test qjson for time")
+    T_RUN_END("Qjson loop insert time")
             QFile jsonFile;
     jsonFile.setFileName("t1.json");
     jsonFile.open(QFile::WriteOnly);
     QJsonDocument qdj;
     qdj.setObject(json);
-    //≤‚ ‘–Ú¡–ªØ ±º‰
+    //ÊµãËØïÂ∫èÂàóÂåñÊó∂Èó¥
     T_RUN_START
             QByteArray out_data =  qdj.toJson();
-    T_RUN_END("test Qjson to data:")
+    T_RUN_END("Qjson to data:")
             jsonFile.write(out_data);
 
     jsonFile.close();
@@ -37,10 +37,10 @@ void qjson_test1( int num)
     jsonFile.open(QFile::ReadOnly);
     QByteArray in_data = jsonFile.readAll();
 
-    //≤‚ ‘Œƒº˛º”‘ÿ ±º‰
+    //ÊµãËØïÊñá‰ª∂Âä†ËΩΩÊó∂Èó¥
     T_RUN_START
             qdj =  QJsonDocument().fromJson(in_data);
-    T_RUN_END("test data to Qjson:")
+    T_RUN_END("Qjson form data:")
 
 
 
@@ -49,7 +49,6 @@ void qjson_test1( int num)
 
 void cjson_test1(int num)
 {
-    printf("come in\n");
     double jary[] = {1.3,4.6,7.8,3.5,9.3,8.8};
     cJSON *cjson = cJSON_CreateObject();
     cJSON *cjson1 = cJSON_CreateObject();
@@ -65,11 +64,11 @@ void cjson_test1(int num)
         cJSON *cjson2 = cJSON_Duplicate(cjson1,1);
         cJSON_AddItemToObject(cjson,QString("arg%1").arg(QString::number(i)).toLatin1().data(),cjson2);
     }
-    T_RUN_END("for time:")
+    T_RUN_END("Cjson loop insert time:")
 
             T_RUN_START
             char* buf = cJSON_Print(cjson);
-    T_RUN_END("test cjson to data:")
+    T_RUN_END("Cjson to data:")
             qbt.clear();
     qbt= buf;
     QFile jsonFile;
@@ -83,7 +82,7 @@ void cjson_test1(int num)
     qbt = jsonFile.readAll();
     T_RUN_START
             cJSON *injson = cJSON_Parse(qbt.data());
-    T_RUN_END("test data to cjson:")
+    T_RUN_END("Cjson from data:")
 }
 
 void cjson_test2()
@@ -95,12 +94,12 @@ void cjson_test2()
     qbt = jsonFile.readAll();
     T_RUN_START
             cJSON *injson = cJSON_Parse(qbt.data());
-    T_RUN_END("test data to cjson:")
+    T_RUN_END("Cjson from data:")
       jsonFile.close();
 
             T_RUN_START
             char* buf = cJSON_Print(injson);
-    T_RUN_END("test cjson to data:")
+    T_RUN_END("Cjson to data:")
             qbt.clear();
     qbt= buf;
 
@@ -112,8 +111,8 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     qjson_test1(10000);
-    cjson_test2();
-//    cjson_test1(1000);
+//    cjson_test2();
+    cjson_test1(10000);
     printf("out\n");
     return a.exec();
 }
