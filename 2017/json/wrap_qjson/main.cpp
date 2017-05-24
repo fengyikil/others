@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
         Bmmsg bm(50,i);
         bm.add("hello",BMPARAM(9.9));
 //        bm.add("bich",BMPARAM_ARRY());
-        QJsonArray jf{1,2,3,4,5};
+        QJsonArray jf{1,2,3,4,"sssssssssss"};
         bm.add("gfd",BMPARAM(jf));
 //        QJsonObject p1{{"hello",9.9}};
 //        bm.setJson(p1);
