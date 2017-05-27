@@ -6,8 +6,6 @@
 #include "cJSON.h"
 void qjson_test1( int num)
 {
-
-
     QJsonObject json;
     QJsonObject json1;
     QJsonArray jary;

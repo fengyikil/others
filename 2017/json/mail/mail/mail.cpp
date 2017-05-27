@@ -4,24 +4,48 @@ Mail::Mail()
 {
 }
 
-Mail::addMsg(QString name, QJsonValue value)
+Mail::Mail(const QJsonObject &other)
+{
+    msg = other;
+}
+
+Mail &Mail::operator=(const Mail &other)
+{
+    msg = other.msg;
+    return *this;
+}
+
+Mail::~Mail()
+{
+
+}
+
+void Mail::insertMsg(const QString &name, const QJsonValue &value)
 {
     msg.insert(name,value);
 }
 
-Mail::getMsg(QString name, QJsonValue value)
+ QJsonValue Mail::getMsg(const QString &name)
 {
     return msg.value(name);
 }
 
-Mail::setMsg(QJsonObject mg)
+void Mail::setMsg(const QJsonObject &other)
 {
-    msg = mg;
+    msg = other;
 }
 
-MailBox PoxtOffice::applyMailbox(QString addr)
+bool Mail::isNULL()
 {
-    MailBox mb;
-    if(allQue.contains(addr))
-        mb
+    if(msg.isEmpty())
+        return true;
+    else
+        return false;
 }
+
+//MailBox PoxtOffice::applyMailbox(QString addr)
+//{
+//    MailBox mb;
+//    if(allQue.contains(addr))
+//        mb
+//}

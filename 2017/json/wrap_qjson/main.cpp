@@ -37,20 +37,19 @@ int main(int argc, char *argv[])
     {
         Bmmsg bm(50,i);
         bm.add("hello",BMPARAM(9.9));
-//        bm.add("bich",BMPARAM_ARRY());
         QJsonArray jf{1,2,3,4,"sssssssssss"};
         bm.add("gfd",BMPARAM(jf));
-//        QJsonObject p1{{"hello",9.9}};
-//        bm.setJson(p1);
+
         BMQue.insert(bm);
         i++;
         Sleep(1000);
     }
-//    for(int i=0;i<30;i++)
-//    {
-//        Bmmsg bm1 =BMQue.out();
-//        qDebug()<<bm1;
-//        qDebug()<<bm1.json;
-//    }
+
+//    QJsonObject qj1,qj2;
+//    qj2.insert("name1",QJsonValue(9));
+//    qj1 =qj2;
+//    qj2.insert("name2",QJsonValue(8));
+//    qDebug()<<qj1<<qj2;
+
     return a.exec();
 }
