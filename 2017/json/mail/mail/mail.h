@@ -1,7 +1,7 @@
 #ifndef MAIL_H
 #define MAIL_H
 #include<QtCore>
-
+class PoxtOffice;
 //只填写填消息
 class Mail
 {
@@ -14,28 +14,32 @@ public:
     void insertMsg(const QString &name,const QJsonValue &value);
     QJsonValue getMsg(const QString &name);
     void setMsg(const QJsonObject &other);
-    bool isNULL();
-     QJsonObject msg;
+    bool isEmpty();
+    QJsonObject msg;
 private:
-//    QJsonObject msg;
+    //    QJsonObject msg;
 };
 
-class PoxtOffice;
+
 class MailBox
 {
 public:
     friend class PoxtOffice;
-    MailBox();
+    MailBox(QString ad);
+    ~MailBox();
+    bool registerPoxtOffice(PoxtOffice* pf);
     int count();
-    QString& getAddr();
+    QString getAddr();
     void setFilter(QStringList &strlist);
-    void addFilter(QString &str);
-    void postMail(Mail mail,QString to=QString("all"));
+    void addFilter(QString str);
+    void subFilter(QString str);
+    void postMail(Mail &mail,QString to=QString("all"));
     Mail getMail(QString from=QString("all"));
-//    Mail& getMail(QString &from=QString("all"),QString &checkname,QJsonValue &value);
-    void setPoxtOffice(PoxtOffice* pf){pxtf = pf;}
+    //    Mail& getMail(QString &from=QString("all"),QString &checkname,QJsonValue &value);
+    void setPoxtOffice(PoxtOffice* pf);
+    void disRepeat();
 private:
-    void insert(Mail mail);
+    void insert(Mail &mail);
     PoxtOffice* pxtf;
     QString addr;
     QStringList filter;
@@ -46,25 +50,22 @@ private:
 class PoxtOffice
 {
 public:
-    PoxtOffice(){office.clear();}
-    int count(){return office.count();}
+    friend class MailBox;
+    PoxtOffice();
+    int count();//注册的邮箱数
+    MailBox* createMailBox(QString addr);
+    MailBox* getMailBox(QString addr);
+    void setGodMonitor(bool gmt);
+    bool getGodMonitor();
+private:
+    QMutex mtx;
     QMap<QString,MailBox*> office;
-    MailBox* applyMailbox(QString addr){
-        MailBox* mb;
-        if(office.contains(addr))
-            mb = office.value(addr);
-        else
-        {
-            mb = new MailBox();
-            mb->addr = addr;
-            mb->setPoxtOffice(this);
-            office.insert(addr,mb);
-        }
-        return mb;
-    }
+    bool godMonitor;//god监听模式打开可以收所有邮件
+    bool RegisterMailBox(MailBox* mb);
+    void disRegisterMailBox(QString addr);
 };
 
-extern PoxtOffice postOffice;
+//extern PoxtOffice postOffice;
 
 
 
