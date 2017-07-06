@@ -10,23 +10,23 @@
 #include "qdebug.h"
 #include <QStyle>
 
-class MyDockTitleBar : public QWidget
+class TitleBar : public QWidget
 {
     Q_OBJECT
 public:
-    MyDockTitleBar(QWidget *parent = 0);
+    TitleBar(QString nm,QWidget *parent = 0);
 
-    QSize sizeHint() const { return minimumSizeHint(); }
+    QSize sizeHint() const {
+        return minimumSizeHint();
+    }
     QSize minimumSizeHint() const;
+
 
 protected:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
-
-public slots:
-//    void updateMask();
-
 private:
+    QString name;
     QPixmap minPix, closePix, floatPix;
 
 };

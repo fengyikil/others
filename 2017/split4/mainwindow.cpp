@@ -39,12 +39,11 @@ MainWindow::MainWindow(QWidget *parent) :
     log = new ulog;
 
     dk_split = new QDockWidget("分屏画布",this);
-//    uTitleBar* utb = new uTitleBar;
-   MyDockTitleBar* bb= new MyDockTitleBar(dk_split);
-    dk_split->setTitleBarWidget(bb);
-    //    dk_split->setWindowFlags(dk_split->windowFlags() | Qt::CustomizeWindowHint|Qt::WindowTitleHint |Qt::WindowMaximizeButtonHint );
+    dk_split->setTitleBarWidget(new TitleBar("分屏画布",dk_split));
     dk_keyValue = new QDockWidget("键值对",this);
+    dk_keyValue->setTitleBarWidget(new TitleBar("键值对",dk_split));
     dk_log = new QDockWidget("日志",this);
+    dk_log->setTitleBarWidget(new TitleBar("日志",dk_split));
 
     //    dk_sp->setAllowedAreas(Qt::AllDockWidgetAreas);
     dk_split->setWidget(split);
